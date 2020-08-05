@@ -4,8 +4,7 @@ node {
         
         stage('Cleanup docker setup') {
             sh 'docker system prune -a -f'
-            sh 'sudo service docker restart'
-        }
+           }
         
 
         stage('Checkout') {
