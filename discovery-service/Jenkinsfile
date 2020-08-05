@@ -1,7 +1,8 @@
 node {
-// Define variable
-def buildversion = "1.0.0"
+    
     withMaven(maven:'maven') {
+    // Define variable
+    def buildversion = "1.0.0"
 
         stage('Checkout') {
             git url: 'https://github.com/ravishsubramanya/sample-spring-microservices.git', credentialsId: 'github-piomin', branch: 'master'
