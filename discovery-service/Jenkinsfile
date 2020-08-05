@@ -3,6 +3,8 @@ node {
     withMaven(maven:'maven') {
         
         stage('Cleanup docker setup') {
+            sh 'docker container rm $(docker container ls –aq)'
+            sh 'docker rmi $(docker images -a -q)'
             sh 'docker system prune -a -f'
            }
         
