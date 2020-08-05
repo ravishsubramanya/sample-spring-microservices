@@ -18,7 +18,7 @@ node {
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/customer-service").run('-p 9060:9060 -td)
+            docker.image("localhost:9010/customer-service").run('-p 9060:9060 -td -name customerservice')
         }
 
         stage ('Final') {
