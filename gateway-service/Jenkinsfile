@@ -18,7 +18,7 @@ node {
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/gateway-service").run('-p 9080:9080 -td')
+            docker.image("localhost:9010/gateway-service").run('-p 9080:9080 -td -name gateway')
         }
      
     }
