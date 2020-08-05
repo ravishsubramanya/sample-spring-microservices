@@ -1,5 +1,6 @@
 node {
-
+// Define variable
+def buildversion = "1.0.0"
     withMaven(maven:'maven') {
 
         stage('Checkout') {
@@ -12,13 +13,13 @@ node {
 
         stage('Image') {
             dir ('discovery-service') {
-                def app = docker.build "localhost:9010/discovery-service:${env.version}"
+                def app = docker.build "localhost:9010/discovery-service:${buildversion}"
                 app.push()
             }
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/discovery-service:${env.version}").run('-p 9070:9070 -h discovery --name discovery')
+            docker.image("localhost:9010/discovery-service:${buildversion}.run('-p 9070:9070 -h discovery --name discovery')
         }
 
         stage ('Final') {
