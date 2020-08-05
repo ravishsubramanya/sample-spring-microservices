@@ -1,6 +1,7 @@
 node {
     
     withMaven(maven:'maven') {
+        pom = readMavenPom file: 'pom.xml'
 
         stage('Checkout') {
             git url: 'https://github.com/ravishsubramanya/sample-spring-microservices.git', credentialsId: 'github-piomin', branch: 'master'
@@ -12,12 +13,12 @@ node {
 
         stage('Image') {
             dir ('discovery-service') {
-                def app = docker.build "localhost:9010/discovery-service"
+                def app = docker.build "localhost:9010/discovery-service:{$pom.version}"
                 }
         }
-
+        
         stage ('Run') {
-            docker.image("localhost:9010/discovery-service").run('-p 9070:9070 -td -h discovery --name discovery')
+            docker.image("localhost:9010/discovery-service:{$pom.version}").run('-p 9070:9070 -td -h discovery --name discovery{$pom.version}')
         }
 
         stage ('Final') {
