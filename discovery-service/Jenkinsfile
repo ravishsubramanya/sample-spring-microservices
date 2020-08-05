@@ -3,7 +3,7 @@ node {
     withMaven(maven:'maven') {
         
         stage('Cleanup docker setup') {
-            sh 'docker_cleanup,sh'
+            sh 'docker_cleanup.sh'
            }
         
 
