@@ -1,4 +1,4 @@
 #!/bin/sh
-docker rm -f $(docker ps –a -q)
-docker rmi -f $(docker images -a)
-docker system prune -a -f
+sudo docker rm -f $(docker ps –a -q)
+sudo docker rmi -f $(docker images -a)
+sudo docker system prune -a -f
