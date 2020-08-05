@@ -20,7 +20,7 @@ node {
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/discovery-service:${buildversion}.run('-p 9070:9070 -h discovery --name discovery')
+            docker.image("localhost:9010/discovery-service:${buildversion}").run('-p 9070:9070 -h discovery --name discovery')
         }
 
         stage ('Final') {
