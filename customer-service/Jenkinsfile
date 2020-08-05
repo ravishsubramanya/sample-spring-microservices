@@ -9,20 +9,16 @@ node {
         stage('Build') {
             sh 'mvn clean install'
 
-            def pom = readMavenPom file:'pom.xml'
-            print pom.version
-            env.version = pom.version
         }
 
         stage('Image') {
             dir ('customer-service') {
-                def app = docker.build "localhost:9010/customer-service:${env.version}"
-                app.push()
+                def app = docker.build "localhost:9010/customer-service"
             }
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/customer-service:${env.version}").run('-p 9060:9060 -h customer --name customer --link discovery --link account')
+            docker.image("localhost:9010/customer-service").run('-p 9060:9060 -td)
         }
 
         stage ('Final') {
