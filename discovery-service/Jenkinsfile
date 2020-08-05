@@ -13,8 +13,7 @@ node {
         stage('Image') {
             dir ('discovery-service') {
                 def app = docker.build "localhost:9010/discovery-service"
-                app.push()
-            }
+                }
         }
 
         stage ('Run') {
