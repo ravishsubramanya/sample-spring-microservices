@@ -18,7 +18,7 @@ node {
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/account-service).run('-p 9050:9050 -h account --name account --link discovery')
+            docker.image("localhost:9010/account-service").run('-p 9050:9050 -h account --name account --link discovery')
         }
 
         stage ('Final') {
