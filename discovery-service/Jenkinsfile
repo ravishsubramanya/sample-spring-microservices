@@ -2,7 +2,7 @@ node {
     
     withMaven(maven:'maven') {
         
-        stage('Checkout') {
+        stage('Cleanup docker setup') {
             sh 'docker system prune -a -f'
         }
         
