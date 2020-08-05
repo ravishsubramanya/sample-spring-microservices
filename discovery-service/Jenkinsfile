@@ -6,9 +6,9 @@ node {
             git url: 'https://github.com/ravishsubramanya/sample-spring-microservices.git', branch: 'master'
         }
           stage('Cleanup docker setup') {
-            sh 'docker rm -f \$(docker ps –a -q)'
-            sh 'docker rmi -f \$(docker images -a)'
-            sh 'docker system prune -a -f'
+            sh '''#!/bin/bash
+                    docker rm $(docker ps -aq)
+                    docker rmi $(docker images -aq)'''
            }
 
         stage('Build') {
