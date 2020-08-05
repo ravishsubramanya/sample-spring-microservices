@@ -1,6 +1,9 @@
 node {
 
     withMaven(maven:'maven') {
+          stage('Cleanup docker setup') {
+            sh 'docker rm -f accountservice'
+        }
 
         stage('Checkout') {
             git url: 'https://github.com/ravishsubramanya/sample-spring-microservices.git', credentialsId: 'github-piomin', branch: 'master'
