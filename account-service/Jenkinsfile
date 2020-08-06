@@ -20,7 +20,7 @@ node {
         }
 
         stage ('Run') {
-            docker.image("localhost:9010/account-service").run('-p 9050:9050 -td --name accountservice')
+            docker.image("localhost:9010/account-service").run('-p 9050:9050 -td --hostname accounts --name accountservice')
         }
 
         stage ('Final') {
